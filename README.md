@@ -8,7 +8,10 @@ GitLab-parser
 ```.bash
 $ export PRIVATE_GITLAB_TOKEN='your_token'
 ```  
-### Run script
+### How to run project
+```.bash
+$ pipenv install
+``` 
 ```.bash
 $ ./manage.py migrate
 ``` 
