@@ -3,6 +3,7 @@ GitLab-parser
 
 ### Environment variables
 create .env file on the project root diretory
+
 | Key    | Description   |    Default value  |
 | :---         |     :---      |          :--- |
 | `PRIVATE_GITLAB_TOKEN`  | personal access token on gitlab  | token |
