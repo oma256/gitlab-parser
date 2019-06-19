@@ -2,13 +2,9 @@ from pprint import pprint
 import os
 import requests
 from django.core.management.base import BaseCommand
+from django.conf import settings
 
 from issues_parse.models import Issue, Repository
-
-
-env = os.environ
-
-PRIVATE_GITLAB_TOKEN = env.get('PRIVATE_GITLAB_TOKEN', 'token')
 
 
 class Command(BaseCommand):
@@ -20,7 +16,7 @@ class Command(BaseCommand):
         for repository in repositories:
             url = f'https://gitlab.com/api/v4/projects/' \
                 f'{repository.repository_id}/issues'
-            headers = {'PRIVATE-TOKEN': PRIVATE_GITLAB_TOKEN}
+            headers = {'PRIVATE-TOKEN': settings.PRIVATE_GITLAB_TOKEN}
             params = {'state': 'opened'}
 
             r = requests.get(url, headers=headers, params=params)

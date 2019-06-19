@@ -1,12 +1,25 @@
 import os
+import environ
 
+
+root = environ.Path(__file__) - 2
+
+env = environ.Env(
+    DEBUG=(bool, False)
+)
+
+environ.Env.read_env()
+
+SITE_ROOT = root()
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-SECRET_KEY = 'rp&aqv2sp^v2jel-cnl+3l)-j#z8(6oj@^31l#e_g+9p6okylp'
+SECRET_KEY = env('DJANGO_SECRET_KEY')
 
-DEBUG = True
+PRIVATE_GITLAB_TOKEN = env('DJANGO_GITLAB_TOKEN', default='secret-token')
+
+DEBUG = env('DJANGO_DEBUG')
 
 ALLOWED_HOSTS = []
 
