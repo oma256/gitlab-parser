@@ -1,5 +1,7 @@
 GitLab-parser
 ==============================
+> The peculiarity of the application is to parse all the tasks 
+> whose status is open, and store the working log in the database
 
 ### Environment variables
 create .env file on the project root diretory
@@ -11,10 +13,35 @@ create .env file on the project root diretory
 | `DJANGO_DEBUG`  | debug_site  | False |
 | `DJANGO_ALLOWED_HOST`  | allowed host  | 0.0.0.0 |
 
-### How to run project
+.env file example:
+```
+DJANGO_DEBUG=True 
+DJANGO_SECRET_KEY=you secret key for project 
+DJANGO_ALLOWED_HOSTS=0.0.0.0 
+DJANGO_GITLAB_TOKEN=your gitlab token 
+```
+
+REQUIREMENTS
+------------
+The following requirements are required to run the project on your host:
+1) Python 3.*
+2) pipenv (lib) - for needed to install libraries without which the 
+project does not run
+
+
+HOW TO RUN PROJECT
+------------------
+```.bash
+$ git clone https://github.com/oma256/gitlab-parser.git
+``` 
+```.bash
+$ cd gitlab-parse
+``` 
 ```.bash
 $ pipenv install
 ``` 
+If the `virtual environment` has not been activated, 
+you can activate it using the `pipenv shell` command
 ```.bash
 $ ./manage.py migrate
 ``` 
