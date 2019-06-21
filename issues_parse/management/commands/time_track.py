@@ -1,10 +1,10 @@
 from pprint import pprint
-import os
-import requests
-from django.core.management.base import BaseCommand
-from django.conf import settings
 
-from issues_parse.models import Issue, Repository
+import requests
+from django.conf import settings
+from django.core.management.base import BaseCommand
+
+from issues_parse.models import WorkLog, Repository
 
 
 class Command(BaseCommand):
@@ -43,5 +43,4 @@ class Command(BaseCommand):
             pprint(issue_list)
 
             for issue in issue_list:
-                Issue.objects.create(**issue)
-
+                WorkLog.objects.create(**issue)

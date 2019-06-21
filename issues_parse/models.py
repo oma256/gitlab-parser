@@ -14,7 +14,7 @@ class Repository(models.Model):
         return self.name
 
 
-class Issue(models.Model):
+class WorkLog(models.Model):
     issue_id = models.PositiveIntegerField('issue id', unique=True)
     title = models.TextField('title')
     description = models.TextField('description')
@@ -28,8 +28,8 @@ class Issue(models.Model):
     time_spent = models.CharField('time spent', max_length=50)
 
     class Meta:
-        verbose_name = 'issue',
-        verbose_name_plural = 'issues'
+        verbose_name = 'work log'
+        verbose_name_plural = 'work logs'
 
     def __str__(self):
         return self.title

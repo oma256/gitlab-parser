@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Issue, Repository
+from .models import WorkLog, Repository
 
 
 class IssueAdmin(admin.ModelAdmin):
@@ -14,4 +14,4 @@ class RepositoryAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Repository, RepositoryAdmin)
-admin.site.register(Issue, IssueAdmin)
+admin.site.register(WorkLog, IssueAdmin)
