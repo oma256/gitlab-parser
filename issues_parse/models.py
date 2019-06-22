@@ -1,3 +1,5 @@
+import uuid
+
 from django.db import models
 
 
@@ -15,13 +17,15 @@ class Repository(models.Model):
 
 
 class WorkLog(models.Model):
-    issue_id = models.PositiveIntegerField('issue id', unique=True)
+    worklog_id = models.UUIDField(primary_key=True, default=uuid.uuid4,
+                                  editable=False)
     title = models.TextField('title')
     description = models.TextField('description')
     author_name = models.CharField('author name', max_length=100)
     assignee_name = models.CharField('assignee name', max_length=100)
     state = models.CharField('state', max_length=20)
     updated_at = models.DateTimeField('updated at')
+    issue_id = models.PositiveIntegerField('issue_id')
     project_id = models.PositiveIntegerField('project_id')
     web_url = models.URLField('web url')
     due_date = models.DateTimeField('dua date')

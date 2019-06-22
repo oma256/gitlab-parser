@@ -1,7 +1,7 @@
 GitLab-parser
 ==============================
 > The peculiarity of the application is to parse all the tasks 
-> whose status is open, and store the working log in the database
+>   whose status is open, and store the working log in the database
 
 ### Environment variables
 create .env file on the project root diretory

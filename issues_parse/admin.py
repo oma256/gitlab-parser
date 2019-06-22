@@ -4,7 +4,7 @@ from .models import WorkLog, Repository
 
 
 class IssueAdmin(admin.ModelAdmin):
-    list_display = ('title', 'description', 'author_name',
+    list_display = ('worklog_id', 'title', 'description', 'author_name',
                     'assignee_name', 'issue_id', 'project_id', 'state',
                     'time_spent', 'updated_at', 'due_date', 'web_url')
 
