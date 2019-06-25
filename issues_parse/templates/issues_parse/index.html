@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table class="table">
+	<thead class="thead-dark">
+		<tr>
+			<th scope="col">gitlab username</th>
+			<th scope="col">full name</th>
+			<th scope="col">Get Work Log</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for user in users %}
+		<tr>
+			<th scope="row">{{ user.gitlab_username }}</th>
+			<td>{{ user.full_name }}</td>
+			<td><a href="{% url 'issues_parse:get_time_track' user.gitlab_username %}">>>>>>></a></td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+
+{% endblock %}

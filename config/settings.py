@@ -2,7 +2,7 @@ import os
 import environ
 
 
-root = environ.Path(__file__) - 2
+ROOT_DIR = environ.Path(__file__) - 2
 
 env = environ.Env(
     DEBUG=(bool, False)
@@ -10,10 +10,7 @@ env = environ.Env(
 
 environ.Env.read_env()
 
-SITE_ROOT = root()
-
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+SITE_ROOT = ROOT_DIR
 
 SECRET_KEY = env('DJANGO_SECRET_KEY')
 
@@ -71,7 +68,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(ROOT_DIR, 'db.sqlite3'),
     }
 }
 
@@ -100,7 +97,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Bishkek'
 
 USE_I18N = True
 
@@ -112,4 +109,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+
+STATIC_ROOT = os.path.join(ROOT_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(ROOT_DIR, "static/")
+]
+

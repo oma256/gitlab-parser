@@ -16,13 +16,17 @@ def create_work_log(response):
                     'description': issue.get('description'),
                     'author_name': issue.get('author').get('name'),
                     'assignee_name': issue.get('assignee').get('name'),
+                    'assignee_gitlab_name': issue.get('assignee').get(
+                        'username'),
                     'state': issue.get('state'),
+                    'time_estimate': issue.get('time_stats').get(
+                        'human_time_estimate'),
+                    'time_spend': issue.get('time_stats').get(
+                        'human_total_time_spent'),
                     'updated_at': issue.get('updated_at'),
                     'due_date': issue.get('due_date'),
                     'project_id': issue.get('project_id'),
                     'web_url': issue.get('web_url'),
-                    'time_spent': issue.get('time_stats').get(
-                        'human_total_time_spent')
                 }
                 issue_list.append(issue)
         for issue in issue_list:
