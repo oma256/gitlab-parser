@@ -1,3 +1,4 @@
+import datetime
 import uuid
 
 from django.db import models
@@ -28,6 +29,7 @@ class Employee(models.Model):
         return self.gitlab_username
 
 
+# noinspection PyTypeChecker
 class WorkLog(models.Model):
     work_log_id = models.UUIDField(primary_key=True, default=uuid.uuid4,
                                    editable=False)
@@ -43,12 +45,64 @@ class WorkLog(models.Model):
     web_url = models.URLField('web url')
     due_date = models.DateTimeField('dua date')
     updated_at = models.DateTimeField('updated at')
-    time_spend = models.CharField('time spent', max_length=50)
-    time_estimate = models.CharField('time estimate', max_length=50)
+    time_spend = models.PositiveIntegerField('time spent')
+    time_estimate = models.PositiveIntegerField('time estimate')
+    create_at = models.DateTimeField('create at', auto_now_add=True)
 
     class Meta:
         verbose_name = 'work log'
         verbose_name_plural = 'work logs'
+
+    intervals = (
+        ('weeks', 604800),  # 60 * 60 * 24 * 7
+        ('days', 86400),  # 60 * 60 * 24
+        ('hours', 3600),  # 60 * 60
+        ('minutes', 60),
+        ('seconds', 1),
+    )
+
+    # noinspection PyTypeChecker
+    def display_time_estimate(self, granularity=2):
+        result = []
+
+        for name, count in self.intervals:
+            value = self.time_estimate // count
+            if value:
+                self.time_estimate -= value * count
+                if value == 1:
+                    name = name.rstrip('s')
+                result.append("{} {}".format(value, name))
+        return ', '.join(result[:granularity])
+
+    def display_time_spend(self, granularity=2):
+        result = []
+
+        for name, count in self.intervals:
+            value = self.time_spend // count
+            if value:
+                self.time_spend -= value * count
+                if value == 1:
+                    name = name.rstrip('s')
+                result.append("{} {}".format(value, name))
+        return ', '.join(result[:granularity])
+
+    # def convert_create_to_second(self):
+    #     temp_date = datetime.strptime(self.create_at, "%Y-%m-%d").date()
+    #     print(temp_date)
+
+    @property
+    def get_create_at(self):
+        create_at = str(self.create_at)[:10]
+        year, month, day = str(create_at).split('-')
+        date = datetime.datetime(
+            int(year), int(month), int(day))
+        second = int(date.timestamp())
+
+        return second
+
+    @property
+    def get_time_spend(self):
+        return self.time_spend
 
     def __str__(self):
         return self.title

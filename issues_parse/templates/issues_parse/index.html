@@ -2,21 +2,30 @@
 
 {% block content %}
 
+<form action="">
+
+</form>
 <table class="table">
 	<thead class="thead-dark">
 		<tr>
 			<th scope="col">gitlab username</th>
 			<th scope="col">full name</th>
+			<th scope="col">start time</th>
+			<th scope="col">end time</th>
 			<th scope="col">Get Work Log</th>
 		</tr>
 	</thead>
 	<tbody>
 		{% for user in users %}
-		<tr>
-			<th scope="row">{{ user.gitlab_username }}</th>
-			<td>{{ user.full_name }}</td>
-			<td><a href="{% url 'issues_parse:get_time_track' user.gitlab_username %}">>>>>>></a></td>
-		</tr>
+			<form action="{% url 'issues_parse:get_time_track' user.gitlab_username %}" method="GET">
+				<tr>
+					<th scope="row">{{ user.gitlab_username }}</th>
+					<td>{{ user.full_name }}</td>
+					<td><input class="start-time" type="date" required="required" name="start-time"></td>
+					<td><input class="end-time" type="date" required="required" name="end-time"></td>
+					<td><button class="btn btn-primary post-button" type="submit">GET</button></td>
+				</tr>
+			</form>
 		{% endfor %}
 	</tbody>
 </table>

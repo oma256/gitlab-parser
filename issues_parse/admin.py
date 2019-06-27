@@ -7,7 +7,7 @@ class IssueAdmin(admin.ModelAdmin):
     list_display = ('work_log_id', 'title', 'description', 'author_name',
                     'assignee_name', 'assignee_gitlab_name', 'issue_id',
                     'project_id', 'state', 'time_spend', 'time_estimate',
-                    'updated_at', 'due_date', 'web_url')
+                    'updated_at', 'due_date', 'create_at', 'web_url')
 
 
 class RepositoryAdmin(admin.ModelAdmin):

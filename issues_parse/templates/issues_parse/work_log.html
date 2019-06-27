@@ -6,7 +6,7 @@
   <thead class="thead-dark">
     <tr>
       <th scope="col">issue_id</th>
-      <th scope="col">full name</th>
+      <th scope="col">assignee name</th>
       <th scope="col">task title</th>
       <th scope="col">task description</th>
       <th scope="col">time estimate</th>
@@ -21,12 +21,14 @@
       <td>{{ work_log.assignee_name }}</td>
       <td>{{ work_log.title }}</td>
       <td>{{ work_log.description }}</td>
-      <td>{{ work_log.time_estimate }}</td>
-      <td>{{ work_log.time_spend }}</td>
+      <td>{{ work_log.display_time_estimate }}</td>
+      <td>{{ work_log.display_time_spend }}</td>
 			<td>{{ work_log.due_date|date:"Y-m-d" }}</td>
     </tr>
 		{% endfor %}
   </tbody>
+
+  <h1>{{ start_time }} / {{ end_time }}: Total time: {{ total_time }}</h1>
 </table>
 
 {% endblock %}

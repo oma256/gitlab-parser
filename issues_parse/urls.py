@@ -1,9 +1,9 @@
 from django.urls import path
 
-from .views import UserListView, TimeTrackList
+from .views import UserListView, WorkLogList
 
-urlpatterns = [
+urlpatterns = (
     path('', UserListView.as_view(), name='index'),
-    path('get_time_track/<str:gitlab_username>', TimeTrackList.as_view(),
+    path('work-logs/<str:gitlab_username>', WorkLogList.as_view(),
          name='get_time_track'),
-]
+)

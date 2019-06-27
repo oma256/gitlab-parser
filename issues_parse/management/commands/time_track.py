@@ -20,9 +20,9 @@ def create_work_log(response):
                         'username'),
                     'state': issue.get('state'),
                     'time_estimate': issue.get('time_stats').get(
-                        'human_time_estimate'),
+                        'time_estimate'),
                     'time_spend': issue.get('time_stats').get(
-                        'human_total_time_spent'),
+                        'total_time_spent'),
                     'updated_at': issue.get('updated_at'),
                     'due_date': issue.get('due_date'),
                     'project_id': issue.get('project_id'),
@@ -30,7 +30,6 @@ def create_work_log(response):
                 }
                 issue_list.append(issue)
         for issue in issue_list:
-            print(issue)
             WorkLog.objects.update_or_create(**issue)
 
 
@@ -48,6 +47,7 @@ def get_issues(repositories):
 class Command(BaseCommand):
 
     def __init__(self):
+        super().__init__()
         self.repositories = Repository.objects.all()
 
     def handle(self, *args, **options):
