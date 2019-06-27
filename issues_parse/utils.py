@@ -35,3 +35,15 @@ def convert_second_to_datetime(second, granularity=2):
                 name = name.rstrip('s')
             result.append("{} {}".format(value, name))
     return ', '.join(result[:granularity])
+
+
+def sum_working_hours(work_logs, start_time, end_time):
+    sum_second = 0
+
+    for i in work_logs:
+        if i.get_create_at in range(start_time, end_time):
+            sum_second += i.get_time_spend
+
+    total_time = convert_second_to_datetime(sum_second)
+
+    return str(total_time)

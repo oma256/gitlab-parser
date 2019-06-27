@@ -29,7 +29,6 @@ class Employee(models.Model):
         return self.gitlab_username
 
 
-# noinspection PyTypeChecker
 class WorkLog(models.Model):
     work_log_id = models.UUIDField(primary_key=True, default=uuid.uuid4,
                                    editable=False)
@@ -61,7 +60,6 @@ class WorkLog(models.Model):
         ('seconds', 1),
     )
 
-    # noinspection PyTypeChecker
     def display_time_estimate(self, granularity=2):
         result = []
 
@@ -72,6 +70,7 @@ class WorkLog(models.Model):
                 if value == 1:
                     name = name.rstrip('s')
                 result.append("{} {}".format(value, name))
+
         return ', '.join(result[:granularity])
 
     def display_time_spend(self, granularity=2):
@@ -84,18 +83,14 @@ class WorkLog(models.Model):
                 if value == 1:
                     name = name.rstrip('s')
                 result.append("{} {}".format(value, name))
-        return ', '.join(result[:granularity])
 
-    # def convert_create_to_second(self):
-    #     temp_date = datetime.strptime(self.create_at, "%Y-%m-%d").date()
-    #     print(temp_date)
+        return ', '.join(result[:granularity])
 
     @property
     def get_create_at(self):
         create_at = str(self.create_at)[:10]
         year, month, day = str(create_at).split('-')
-        date = datetime.datetime(
-            int(year), int(month), int(day))
+        date = datetime.datetime(int(year), int(month), int(day))
         second = int(date.timestamp())
 
         return second
