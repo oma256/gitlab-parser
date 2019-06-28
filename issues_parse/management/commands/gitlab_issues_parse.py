@@ -6,6 +6,14 @@ from issues_parse.models import WorkLog, Repository
 
 
 def create_work_log(response):
+    """
+    The parameter gets a list of all tasks, creates a new list of dictionaries,
+    checks if 0 is contained in (time_estimate, time_spend, due_date)
+    it will not create a record in the database if the record exists
+    updates it if not then creates a record.
+    :param response:
+    :return: None
+    """
     if response.status_code == requests.codes['ok']:
         issue_list = []
         for issue in response.json():
@@ -41,6 +49,12 @@ def create_work_log(response):
 
 
 def get_issues(repositories):
+    """
+    The parameter gets a list of all repositories that are in advance
+    data base. A request is made to the GITLAB API to get issues.
+    :param repositories:
+    :return: dict
+    """
     for repository in repositories:
         url = f'https://gitlab.com/api/v4/projects/' \
             f'{repository.repository_id}/issues'
@@ -58,5 +72,5 @@ class Command(BaseCommand):
         self.repositories = Repository.objects.all()
 
     def handle(self, *args, **options):
-        r = get_issues(self.repositories)
-        create_work_log(r)
+        response = get_issues(self.repositories)
+        create_work_log(response)
