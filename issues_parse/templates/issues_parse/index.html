@@ -6,7 +6,7 @@
 
 </form>
 <table class="table">
-	<thead class="thead-dark">
+	<thead class="thead-dark text-center">
 		<tr>
 			<th scope="col">gitlab username</th>
 			<th scope="col">full name</th>
@@ -15,7 +15,7 @@
 			<th scope="col">Get Work Log</th>
 		</tr>
 	</thead>
-	<tbody>
+	<tbody class="text-center">
 		{% for user in users %}
 			<form action="{% url 'issues_parse:get_time_track' user.gitlab_username %}" method="GET">
 				<tr>

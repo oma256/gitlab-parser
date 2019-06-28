@@ -8,6 +8,11 @@ verify_ssl = true
 [packages]
 django = "*"
 django-environ = "*"
+coverage = "*"
+dj-database-url = "*"
+psycopg2-binary = "*"
+requests = "*"
+responses = "*"
 
 [requires]
 python_version = "3.7"

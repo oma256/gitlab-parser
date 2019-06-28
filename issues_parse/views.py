@@ -19,7 +19,7 @@ class WorkLogList(ListView):
     model = WorkLog
 
     def get(self, request, *args, **kwargs):
-        work_logs = self.model.objects.all().filter(
+        work_logs = self.model.objects.filter(
             assignee_gitlab_name=kwargs.get('gitlab_username'))
         start_time, end_time = convert_date_to_second(request)
         total_time = sum_working_hours(work_logs, start_time, end_time)

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<h1 class="text-center">{{ start_time }} / {{ end_time }}: Total time: {{ total_time }}</h1>
 <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -27,8 +27,6 @@
     </tr>
 		{% endfor %}
   </tbody>
-
-  <h1 class="text-center">{{ start_time }} / {{ end_time }}: Total time: {{ total_time }}</h1>
 </table>
 
 {% endblock %}

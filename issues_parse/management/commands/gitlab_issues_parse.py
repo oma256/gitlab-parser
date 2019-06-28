@@ -30,7 +30,14 @@ def create_work_log(response):
                 }
                 issue_list.append(issue)
         for issue in issue_list:
-            WorkLog.objects.update_or_create(**issue)
+            times = (issue.get('time_estimate'), issue.get('time_spend'),
+                     issue.get('due_date'))
+            if 0 in times:
+                continue
+            worklog = WorkLog.objects.filter(
+                    issue_id=issue.get('issue_id')).update(**issue)
+            if not worklog:
+                WorkLog.objects.create(**issue)
 
 
 def get_issues(repositories):

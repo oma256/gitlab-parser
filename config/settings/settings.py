@@ -1,24 +1,23 @@
 import os
 import environ
+import dj_database_url
 
-
-ROOT_DIR = environ.Path(__file__) - 2
 
 env = environ.Env(
     DEBUG=(bool, False)
 )
 
+ROOT_DIR = environ.Path(__file__) - 3
+
 environ.Env.read_env()
 
-SITE_ROOT = ROOT_DIR
-
-SECRET_KEY = env('DJANGO_SECRET_KEY')
+SECRET_KEY = env('DJANGO_SECRET_KEY', default='secret-key')
 
 PRIVATE_GITLAB_TOKEN = env('DJANGO_GITLAB_TOKEN', default='secret-token')
 
-DEBUG = env('DJANGO_DEBUG')
+DEBUG = env('DJANGO_DEBUG', default=False)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['0.0.0.0'])
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -62,10 +61,8 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(ROOT_DIR, 'db.sqlite3'),
-    }
+    'default': dj_database_url.config('DEFAULT_DATABASE_URL',
+                                      default='postgres://postgres:postgres@db:5432/postgres')
 }
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -99,4 +96,3 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(ROOT_DIR, "static/")
 ]
-
