@@ -1,7 +1,7 @@
 GitLab-parser
 ==============================
 > The peculiarity of the application is to parse all the tasks 
->   whose status is open, and store the working log in the database
+> whose status is open, and store the working log in the database
 
 ### Environment variables
 create .env file on the project root diretory
@@ -24,9 +24,8 @@ DJANGO_GITLAB_TOKEN=your gitlab token
 REQUIREMENTS
 ------------
 The following requirements are required to run the project on your host:
-1) Python 3.*
-2) pipenv (lib) - for needed to install libraries without which the 
-project does not run
+1) Docker
+2) docker-compose
 
 
 HOW TO RUN PROJECT
@@ -38,13 +37,5 @@ $ git clone https://github.com/oma256/gitlab-parser.git
 $ cd gitlab-parse
 ``` 
 ```.bash
-$ pipenv install
-``` 
-If the `virtual environment` has not been activated, 
-you can activate it using the `pipenv shell` command
-```.bash
-$ ./manage.py migrate
-``` 
-```.bash
-$ ./manage.py time_track
+$ docker-compose up --build
 ``` 
