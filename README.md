@@ -1,6 +1,6 @@
 GitLab-parser
 ==============================
-> The peculiarity of the application is to parse all the tasks 
+> The peculiarity of the application is to parse all the tasks
 > whose status is open, and store the working log in the database
 
 ### Environment variables
