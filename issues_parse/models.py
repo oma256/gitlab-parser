@@ -91,9 +91,9 @@ class WorkLog(models.Model):
         create_at = str(self.create_at)[:10]
         year, month, day = str(create_at).split('-')
         date = datetime.datetime(int(year), int(month), int(day))
-        second = int(date.timestamp())
+        seconds = int(date.timestamp())
 
-        return second
+        return seconds
 
     @property
     def get_time_spend(self):

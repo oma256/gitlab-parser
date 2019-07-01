@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1 class="text-center">{{ start_time }} / {{ end_time }}: Total time: {{ total_time }}</h1>
+<h1 class="text-center">{{ start_time }} / {{ end_time }} Total time: {{ total_time }}</h1>
 <table class="table">
   <thead class="thead-dark">
     <tr>
       <th scope="col">issue_id</th>
+      <th scope="col">author name</th>
       <th scope="col">assignee name</th>
       <th scope="col">task title</th>
-      <th scope="col">task description</th>
       <th scope="col">time estimate</th>
       <th scope="col">time spend</th>
 			<th scope="col">due date</th>
@@ -18,9 +18,9 @@
 		{% for work_log in work_logs %}
     <tr>
       <th scope="row">{{ work_log.issue_id }}</th>
+      <td>{{ work_log.author_name }}</td>
       <td>{{ work_log.assignee_name }}</td>
       <td>{{ work_log.title }}</td>
-      <td>{{ work_log.description }}</td>
       <td>{{ work_log.display_time_estimate }}</td>
       <td>{{ work_log.display_time_spend }}</td>
 			<td>{{ work_log.due_date|date:"Y-m-d" }}</td>

@@ -49,12 +49,12 @@ def convert_second_to_datetime(seconds, granularity=2):
 
 
 def sum_working_hours(work_logs, start_time, end_time):
-    sum_second = 0
+    sum_seconds = 0
 
     for work_log in work_logs:
         if work_log.get_create_at in range(start_time, end_time):
-            sum_second += work_log.get_time_spend
+            sum_seconds += work_log.get_time_spend
 
-    total_time = convert_second_to_datetime(sum_second)
+    total_time = convert_second_to_datetime(sum_seconds)
 
     return str(total_time)
