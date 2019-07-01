@@ -42,7 +42,7 @@ class WorkLog(models.Model):
     issue_id = models.PositiveIntegerField('issue_id')
     project_id = models.PositiveIntegerField('project_id')
     web_url = models.URLField('web url')
-    due_date = models.DateTimeField('dua date', blank=True, null=True)
+    due_date = models.DateField('dua date', blank=True, null=True)
     updated_at = models.DateTimeField('updated at', blank=True, null=True)
     time_spend = models.PositiveIntegerField('time spent')
     time_estimate = models.PositiveIntegerField('time estimate')
