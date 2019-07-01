@@ -3,7 +3,7 @@ from django.views.generic import ListView
 
 from .models import Employee, WorkLog
 from .utils import (
-    convert_date_to_second, convert_second_to_datetime, sum_working_hours
+    convert_date_to_second, sum_working_hours
 )
 
 

@@ -8,8 +8,7 @@ env = environ.Env(
 )
 
 ROOT_DIR = environ.Path(__file__) - 3
-
-environ.Env.read_env()
+env.read_env(env.str('ROOT_DIR', '.env'))
 
 SECRET_KEY = env('DJANGO_SECRET_KEY', default='secret-key')
 
